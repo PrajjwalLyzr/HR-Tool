@@ -1,7 +1,7 @@
 import streamlit as st
 from features import ComplianceReporting, RecruitmentApplicantTracking
 from features import LearningDevelopment, PerformanceManagement
-from features import Onboarding, EmployeeEngagement
+from features import OnboardingEmployee, EmployeeEngagement
 from features import HomePage
 from utils import utils
 from dotenv import load_dotenv; load_dotenv()
@@ -28,7 +28,7 @@ if page == "Recruitment & Applicant Tracking":
     RecruitmentApplicantTracking()
 
 elif page == "Onboarding":
-    Onboarding()
+    OnboardingEmployee()
 
 elif page == "Performance Management":
     PerformanceManagement()
