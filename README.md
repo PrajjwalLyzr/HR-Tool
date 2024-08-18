@@ -1,6 +1,6 @@
 # HR Mangement Tool Powered by [Lyzr.ai](https://www.lyzr.ai/)
 
-Welcome to the HR Tool powered by Lyzr's Agent API, a comprehensive solution designed to streamline and enhance human resource processes using advanced AI capabilities. This tool integrates various HR functionalities, providing an efficient, personalized, and user-friendly experience.
+Welcome to the HR Tool powered by Lyzr's [Agent API](https://agent.api.lyzr.app/docs#overview), a comprehensive solution designed to streamline and enhance human resource processes using advanced AI capabilities. This tool integrates various HR functionalities, providing an efficient, personalized, and user-friendly experience.
 
 ## Features
 
