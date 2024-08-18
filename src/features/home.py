@@ -1,6 +1,9 @@
 import streamlit as st
 from utils import utils
 from PIL import Image
+from lyzragent import LyzrAgent
+
+
 
 def HomePage():
     path = 'Keys.txt'
@@ -14,10 +17,21 @@ def HomePage():
     LyzrAPIKey = st.text_input(label="Lyzr API Key", placeholder='X-API-KEY', type='password')
     if APIKey and LyzrAPIKey:       
         if st.button('Submit Keys'):
-            with open(path, 'w') as f:
-                f.write(f"APIKey: {APIKey}\n")
-                f.write(f"LyzrAPIKey: {LyzrAPIKey}\n")
-                st.success("Keys have been saved successfully!")
+            agent = LyzrAgent(x_api_key=LyzrAPIKey, llm_api_key=APIKey)
+            response = agent.create_environment(
+                    name="Test",
+                    features=[{
+                        "type": "TOOL_CALLING",
+                        "config": {"max_tries": 1},
+                        "priority": 0
+                    }],
+                    tools=["perplexity_search"])
+            
+            if response is not None:
+                with open(path, 'w') as f:
+                    f.write(f"APIKey: {APIKey}\n")
+                    f.write(f"LyzrAPIKey: {LyzrAPIKey}\n")
+                    st.success("Keys have been saved successfully!")
                           
     else:
         st.info("Please ensure both APIKey and LyzrAPIKey are provided.")

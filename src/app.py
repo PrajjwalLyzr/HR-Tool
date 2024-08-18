@@ -3,9 +3,7 @@ from features import ComplianceReporting, RecruitmentApplicantTracking
 from features import LearningDevelopment, PerformanceManagement
 from features import Onboarding, EmployeeEngagement
 from features import HomePage
-from PIL import Image
 from utils import utils
-import os
 from dotenv import load_dotenv; load_dotenv()
 
 utils.page_config()
@@ -54,11 +52,6 @@ utils.social_media()
 utils.footer()
 
 
-
-
-# if __name__ == "__main__":
-#     if (APIKey and LyzrAPIKey) != "":
-#         job_description()
     
 
 

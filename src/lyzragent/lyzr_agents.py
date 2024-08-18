@@ -1,5 +1,6 @@
 import requests
 import json
+import streamlit as st
 
 class LyzrAgent:
     def __init__(self, x_api_key, llm_api_key):
@@ -25,7 +26,7 @@ class LyzrAgent:
         if response.status_code == 200:
             return response.json()
         else:
-            print(f"Error: {response.status_code} - {response.text}")
+            st.error(f"Error: {response.status_code} - {response.text}")
             return None
 
     def create_agent(self, env_id, system_prompt, name):
@@ -45,7 +46,7 @@ class LyzrAgent:
         if response.status_code == 200:
             return response.json()
         else:
-            print(f"Error: {response.status_code} - {response.text}")
+            st.error(f"Error: {response.status_code} - {response.text}")
             return None
 
     def send_message(self, agent_id, user_id, session_id, message):
@@ -63,7 +64,7 @@ class LyzrAgent:
         if response.status_code == 200:
             return response.json()
         else:
-            print(f"Error: {response.status_code} - {response.text}")
+            st.error(f"Error: {response.status_code} - {response.text}")
             return None
 
     def create_task(self, agent_id, session_id, input_message):
@@ -80,5 +81,5 @@ class LyzrAgent:
         if response.status_code == 200:
             return response.json()
         else:
-            print(f"Error: {response.status_code} - {response.text}")
+            st.error(f"Error: {response.status_code} - {response.text}")
             return None
