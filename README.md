@@ -53,7 +53,7 @@ Welcome to the HR Tool powered by Lyzr's [Agent API](https://agent.api.lyzr.app/
 
 3. Run the application:
    ```bash
-   python .\src\app.py
+   streamlit run .\src\app.py
    ```
 
 ### Usage
