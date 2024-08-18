@@ -3,7 +3,7 @@ from PIL import Image
 
 
 def LearningDevelopment():
-    image = Image.open("./logo/lyzr-logo.png")
+    image = Image.open("./src/logo/lyzr-logo.png")
     st.image(image, width=150)
     st.title("Learning & Development")
     st.write("**Personalized Learning Pathways:** Recommend training modules based on individual career goals and current skills.")

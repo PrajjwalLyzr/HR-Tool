@@ -3,7 +3,7 @@ from PIL import Image
 
 
 def ComplianceReporting():
-    image = Image.open("./logo/lyzr-logo.png")
+    image = Image.open("./src/logo/lyzr-logo.png")
     st.image(image, width=150)
     st.title("Compliance & Reporting")
     st.write("**Policy Explanation:** Generate clear and concise explanations of HR policies and legal requirements.")

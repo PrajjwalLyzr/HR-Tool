@@ -5,7 +5,7 @@ from PIL import Image
 def HomePage():
     path = 'Keys.txt'
     utils.delete_keys_file(file_path=path)    
-    image = Image.open("./logo/lyzr-logo.png")
+    image = Image.open("./src/logo/lyzr-logo.png")
     st.image(image, width=150)
     st.title("HR Management System")
     st.markdown("HR Management System powered by Lyzr.ai, a comprehensive solution designed to streamline and enhance human resource processes using advanced AI capabilities.")

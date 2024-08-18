@@ -11,12 +11,13 @@ import os
 def RecruitmentApplicantTracking():
     resume_data = "ResumeData"
     os.makedirs(resume_data, exist_ok=True)
+    utils.remove_existing_files(directory=resume_data)
 
-    image = Image.open("./logo/lyzr-logo.png")
+    image = Image.open("./src/logo/lyzr-logo.png")
     st.image(image, width=150)
     st.title("Recruitment & Applicant Tracking")
 
-    file = 'Keys.txt'
+    file = "Keys.txt"
     
     APIKey = None
     LyzrAPIKey = None
@@ -101,6 +102,7 @@ def RecruitmentApplicantTracking():
                 except FileNotFoundError:
                     st.warning(f"The file '{resume_file}' does not exist in the folder '{resume_data}'.")
             else:
+                utils.remove_existing_files(directory=resume_data)
                 st.info('Upload Resume to get the details')
 
     except FileNotFoundError:
