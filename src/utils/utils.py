@@ -17,6 +17,7 @@ def remove_existing_files(directory):
             st.error(f"Error while removing existing files: {e}")
 
 
+
 def get_files_in_directory(directory):
     # This function help us to get the file path along with filename.
     files_list = []
@@ -30,12 +31,16 @@ def get_files_in_directory(directory):
 
     return files_list
 
+
+
 def save_uploaded_file(directory, uploaded_file):
     remove_existing_files(directory=directory)
     file_path = os.path.join(directory, uploaded_file.name)
     with open(file_path, "wb") as file:
         file.write(uploaded_file.read())
     st.success("File uploaded successfully")
+
+
 
 def get_file_name(directory):
     try:
@@ -51,21 +56,26 @@ def get_file_name(directory):
         return f"An error occurred: {e}"
 
 
+
 def delete_keys_file(file_path):
     if os.path.exists(file_path):
         os.remove(file_path)
 
-def social_media():
+
+
+def social_media(justify=None):
     # This function will help you to render socila media icons with link on the app
     social_media_links = [
     "https://github.com/LyzrCore/lyzr",
     "https://www.youtube.com/@LyzrAI",
     "https://www.instagram.com/lyzr.ai/",
-    "https://www.linkedin.com/company/lyzr-platform/posts/?feedView=all",
+    "https://www.linkedin.com/company/lyzr-platform/posts/?feedView=all"
                         ]   
 
-    social_media_icons = SocialMediaIcons(social_media_links)
-    social_media_icons.render(sidebar=True) # will render in the sidebar
+    colors = ["#ffffff", None, None, None]
+    social_media_icons = SocialMediaIcons(social_media_links, colors=colors)
+    social_media_icons.render(sidebar=True, justify_content=justify) # will render in the sidebar
+
 
 
 def social_media_page():
@@ -80,6 +90,8 @@ def social_media_page():
     social_media_icons = SocialMediaIcons(social_media_links)
     social_media_icons.render(sidebar=False, justify_content="space-evenly")
 
+
+
 def style_app():
     # You can put your CSS styles here
     st.markdown("""
@@ -90,9 +102,12 @@ def style_app():
     [data-testid="stSidebar"][aria-expanded="true"]{
            min-width: 450px;
            max-width: 450px;
+           background-color: #0E1117;
        }
     </style>
     """, unsafe_allow_html=True)
+
+
 
 def page_config(layout = "centered"):
     st.set_page_config(
@@ -102,6 +117,8 @@ def page_config(layout = "centered"):
         page_icon="./logo/lyzr-logo-cut.png"
     )
 
+
+
 def footer():
     footer = """
     <style>
@@ -110,7 +127,7 @@ def footer():
         left: 0;
         bottom: 0;
         width: 100%;
-        background-color: #f1f1f1;
+        background-color: #0E1117;
         text-align: center;
         padding: 10px;
         font-size: 12px;
@@ -123,10 +140,53 @@ def footer():
     """
     st.markdown(footer, unsafe_allow_html=True)
 
+
+
 def template_end():
-    with st.sidebar.expander("ℹ️ - About this App"):
-        st.sidebar.markdown("This app uses Lyzr's Agent API to streamline and enhance human resource processes using advanced AI capabilities.")
-        st.sidebar.link_button("Lyzr", url='https://www.lyzr.ai/', use_container_width = True)
-        st.sidebar.link_button("Book a Demo", url='https://www.lyzr.ai/book-demo/', use_container_width = True)
-        st.sidebar.link_button("Discord", url='https://discord.gg/nm7zSyEFA2', use_container_width = True)
-        st.sidebar.link_button("Slack", url='https://join.slack.com/t/genaiforenterprise/shared_invite/zt-2a7fr38f7-_QDOY1W1WSlSiYNAEncLGw', use_container_width = True)
+    st.sidebar.markdown("This app uses Lyzr's Agent API to streamline and enhance human resource processes using advanced AI capabilities.")
+
+    st.sidebar.markdown(
+        """
+        <style>
+        .button-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .button-column {
+            flex: 1;
+            margin-right: 5px;
+        }
+        .button-column:last-child {
+            margin-right: 0;
+        }
+        .sidebar-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            text-align: center;
+            color: white;
+            background-color: #000000;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .sidebar-button:hover {
+            background-color: #7458E8;
+        }
+        </style>
+
+        <div class="button-container">
+            <div class="button-column">
+                <a class="sidebar-button" href="https://www.lyzr.ai/" target="_blank">Lyzr</a>
+                <a class="sidebar-button" href="https://www.lyzr.ai/book-demo/" target="_blank">Book a Demo</a>
+            </div>
+            <div class="button-column">
+                <a class="sidebar-button" href="https://discord.gg/nm7zSyEFA2" target="_blank">Discord</a>
+                <a class="sidebar-button" href="https://join.slack.com/t/genaiforenterprise/shared_invite/zt-2a7fr38f7-_QDOY1W1WSlSiYNAEncLGw" target="_blank">Slack</a>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )

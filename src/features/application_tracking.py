@@ -11,7 +11,7 @@ def RecruitmentApplicantTracking():
     os.makedirs(resume_data, exist_ok=True)
     utils.remove_existing_files(directory=resume_data)
 
-    image = Image.open("./src/logo/lyzr-logo.png")
+    image = Image.open("./src/logo/Lyzr_Logo-white.png")
     st.image(image, width=150)
     st.title("Recruitment & Applicant Tracking")
 

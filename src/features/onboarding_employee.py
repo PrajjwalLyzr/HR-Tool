@@ -3,7 +3,7 @@ from PIL import Image
 from hrtools import Onboarding
 
 def OnboardingEmployee():
-    image = Image.open("./src/logo/lyzr-logo.png")
+    image = Image.open("./src/logo/Lyzr_Logo-white.png")
     st.image(image, width=150)
     st.title("Onboarding")
     
