@@ -1,27 +1,29 @@
 import streamlit as st
 from PIL import Image
-from hrtools import Onboarding
+from hrtools import Onboarding, HelperTool
 
-def OnboardingEmployee():
+def OnboardingEmployee(OPENAI_API_KEY, LYZR_X_KEY):
     image = Image.open("./src/logo/Lyzr_Logo-white.png")
     st.image(image, width=150)
     st.title("Onboarding")
+    st.markdown("##### Click any of the button to use that respective tool!")
+    # file = "Keys.txt"
     
-    file = "Keys.txt"
+    # APIKey = None
+    # LyzrAPIKey = None
     
-    APIKey = None
-    LyzrAPIKey = None
-    
+    # try:
+    #     with open(file, 'r') as f:
+    #         lines = f.readlines()
+    #         for line in lines:
+    #             if line.startswith('APIKey:'):
+    #                 APIKey = line.split('APIKey:')[1].strip()
+    #             elif line.startswith('LyzrAPIKey:'):
+    #                 LyzrAPIKey = line.split('LyzrAPIKey:')[1].strip()
+    #                 onboard = Onboarding(LyzrKey=LyzrAPIKey, APIKey=APIKey)
     try:
-        with open(file, 'r') as f:
-            lines = f.readlines()
-            for line in lines:
-                if line.startswith('APIKey:'):
-                    APIKey = line.split('APIKey:')[1].strip()
-                elif line.startswith('LyzrAPIKey:'):
-                    LyzrAPIKey = line.split('LyzrAPIKey:')[1].strip()
-                    onboard = Onboarding(LyzrKey=LyzrAPIKey, APIKey=APIKey)
-
+        onboard = Onboarding(LyzrKey=LYZR_X_KEY, APIKey=OPENAI_API_KEY)
+        mailSender = HelperTool(LyzrKey=LYZR_X_KEY, APIKey=OPENAI_API_KEY)
         # Initialize session state variables
         if 'active_tool' not in st.session_state:
             st.session_state.active_tool = None
@@ -57,8 +59,9 @@ def OnboardingEmployee():
 
             if st.session_state.generated_mail:
                 if st.button('Send Mail'):
+                    # mailSender = HelperTool(LyzrKey=LyzrAPIKey, APIKey=APIKey)
                     with st.spinner('Sending the Mail...'):
-                        mail_response = onboard.MailSender(
+                        mail_response = mailSender.MailSender(
                             mail=st.session_state.generated_mail, 
                             mail_id=new_employee_mail
                         )
@@ -94,5 +97,7 @@ def OnboardingEmployee():
             else:
                 st.warning('Please provide the necessary details')
 
-    except FileNotFoundError:
-        st.info('Please submit the APIKey and LyzrAPIKey on the Home Page')
+    # except FileNotFoundError:
+    #     st.info('Please submit the APIKey and LyzrAPIKey on the Home Page')
+    except Exception as e:
+        st.error(f"Error:{str(e)}")

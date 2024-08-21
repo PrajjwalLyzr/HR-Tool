@@ -6,7 +6,7 @@ import PyPDF2
 import os
 
 
-def RecruitmentApplicantTracking():
+def RecruitmentApplicantTracking(OPENAI_API_KEY, LYZR_X_KEY):
     resume_data = "ResumeData"
     os.makedirs(resume_data, exist_ok=True)
     utils.remove_existing_files(directory=resume_data)
@@ -14,22 +14,25 @@ def RecruitmentApplicantTracking():
     image = Image.open("./src/logo/Lyzr_Logo-white.png")
     st.image(image, width=150)
     st.title("Recruitment & Applicant Tracking")
+    st.markdown("##### Click any of the button to use that respective tool!")
 
-    file = "Keys.txt"
+    # file = "Keys.txt"
     
-    APIKey = None
-    LyzrAPIKey = None
+    # APIKey = None
+    # LyzrAPIKey = None
     
+    # try:
+    #     with open(file, 'r') as f:
+    #         lines = f.readlines()
+    #         for line in lines:
+    #             if line.startswith('APIKey:'):
+    #                 APIKey = line.split('APIKey:')[1].strip()
+    #             elif line.startswith('LyzrAPIKey:'):
+    #                 LyzrAPIKey = line.split('LyzrAPIKey:')[1].strip()
+    #                 recruit = Recruitment(LyzrKey=LyzrAPIKey, APIKey=APIKey)
+
     try:
-        with open(file, 'r') as f:
-            lines = f.readlines()
-            for line in lines:
-                if line.startswith('APIKey:'):
-                    APIKey = line.split('APIKey:')[1].strip()
-                elif line.startswith('LyzrAPIKey:'):
-                    LyzrAPIKey = line.split('LyzrAPIKey:')[1].strip()
-                    recruit = Recruitment(LyzrKey=LyzrAPIKey, APIKey=APIKey)
-
+        recruit = Recruitment(LyzrKey=LYZR_X_KEY, APIKey=OPENAI_API_KEY)
         # Initialize session state variables
         if 'active_tool' not in st.session_state:
             st.session_state.active_tool = None
@@ -45,6 +48,7 @@ def RecruitmentApplicantTracking():
         with col3:
             if st.button('Get Appliers Details'):
                 st.session_state.active_tool = "Get Appliers Details"
+
         
         # Display the relevant UI based on the active tool
         if st.session_state.active_tool == "Get Job Description":
@@ -107,9 +111,12 @@ def RecruitmentApplicantTracking():
                 utils.remove_existing_files(directory=resume_data)
                 st.info('Upload Resume to get the details')
 
-    except FileNotFoundError:
-        # st.warning(f"The file '{file}' does not exist.")
-        st.info('Please submit the APIKey and LyzrAPIKey on the Home Page')
+    # except FileNotFoundError:
+    #     # st.warning(f"The file '{file}' does not exist.")
+    #     st.info('Please submit the APIKey and LyzrAPIKey on the Home Page')
+
+    except Exception as e:
+        st.error(f"Error:{str(e)}")
 
 
 # ---------------------------

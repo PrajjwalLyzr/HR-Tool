@@ -1,8 +1,9 @@
 import streamlit as st
-from PIL import Image
-from features import ComplianceReporting, RecruitmentApplicantTracking
-from features import LearningDevelopment, PerformanceManagement
-from features import OnboardingEmployee, EmployeeEngagement
+import os
+from features import RecruitmentApplicantTracking
+from features import LearningDevelopment
+from features import PerformanceManagement
+from features import OnboardingEmployee
 from features import HomePage
 from utils import utils
 from dotenv import load_dotenv; load_dotenv()
@@ -10,12 +11,15 @@ from dotenv import load_dotenv; load_dotenv()
 utils.page_config()
 utils.style_app()
 
+
+openai_api_key = os.getenv('OPENAI_API_KEY')
+lyzr_x_key = os.getenv('X_API_Key')
+
 image = "./src/logo/HR-Management-Tool-banner-lyzrAI.png"
 st.sidebar.image(image=image)
 utils.social_media(justify="space-evenly")
 st.sidebar.markdown("---")
 
-# st.sidebar.title("HR Management by Lyzr.ai")
 # Initialize session state for active page
 if 'active_page' not in st.session_state:
     st.session_state.active_page = "Home"
@@ -24,7 +28,6 @@ if 'active_page' not in st.session_state:
 def set_page(page_name):
     st.session_state.active_page = page_name
 
-# Sidebar title and Home button
 if st.sidebar.button("Home", key="home_button"):
     set_page("Home")
 
@@ -40,8 +43,8 @@ with col1:
         set_page("Recruitment & Applicant Tracking")
     if st.button("Performance", key="performance_button"):
         set_page("Performance Management")
-    if st.button("Engagement", key="engagement_button"):
-        set_page("Employee Engagement")
+    # if st.button("Engagement", key="engagement_button"):
+    #     set_page("Employee Engagement")
 
 # Place buttons in the second column
 with col2:
@@ -49,24 +52,24 @@ with col2:
         set_page("Onboarding")
     if st.button("Development", key="learning_button"):
         set_page("Learning & Development")
-    if st.button("Reporting", key="compliance_button"):
-        set_page("Compliance & Reporting")
+    # if st.button("Reporting", key="compliance_button"):
+    #     set_page("Compliance & Reporting")
 
 # Navigate to respective pages based on session state
 if st.session_state.active_page == "Home":
     HomePage()
 elif st.session_state.active_page == "Recruitment & Applicant Tracking":
-    RecruitmentApplicantTracking()
+    RecruitmentApplicantTracking(OPENAI_API_KEY=openai_api_key, LYZR_X_KEY=lyzr_x_key)
 elif st.session_state.active_page == "Onboarding":
-    OnboardingEmployee()
+    OnboardingEmployee(OPENAI_API_KEY=openai_api_key, LYZR_X_KEY=lyzr_x_key)
 elif st.session_state.active_page == "Performance Management":
-    PerformanceManagement()
+    PerformanceManagement(OPENAI_API_KEY=openai_api_key, LYZR_X_KEY=lyzr_x_key)
 elif st.session_state.active_page == "Learning & Development":
-    LearningDevelopment()
-elif st.session_state.active_page == "Employee Engagement":
-    EmployeeEngagement()
-elif st.session_state.active_page == "Compliance & Reporting":
-    ComplianceReporting()
+    LearningDevelopment(OPENAI_API_KEY=openai_api_key, LYZR_X_KEY=lyzr_x_key)
+# elif st.session_state.active_page == "Employee Engagement":
+#     EmployeeEngagement()
+# elif st.session_state.active_page == "Compliance & Reporting":
+#     ComplianceReporting()
 
 
 
