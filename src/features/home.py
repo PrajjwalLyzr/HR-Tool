@@ -16,39 +16,42 @@ def HomePage():
 
     
     # Key Features
-    st.write("## Key Features:")
+    # st.write("## Key Features")
+    st.write("# HR Tools")
 
+    col1, col2 = st.columns(2)
+
+    with col1:
+        # Recruitment & Applicant Tracking
+        st.write("""
+        ## Recruitment
+        - **Resume Parsing & Matching**
+        - **Job Description Creation**
+        - **Applier Details Extraction**
+        """)
+
+        # Onboarding
+        st.write("""
+        ## Onboarding
+        - **Automated Assistance**
+        - **Document Generation**
+        """)
     
+    with col2:
+        # Performance Management
+        st.write("""
+        ## Performance 
+        - **Feedback Generation**
+        - **Goal Setting**
+        - **Sentiment Analysis**
+        """)
 
-    # Recruitment & Applicant Tracking
-    st.write("""
-    ### 1. Recruitment & Applicant Tracking
-    - **Resume Parsing & Matching**: Automatically match resumes to job descriptions.
-    - **Job Description Creation**: Generate accurate, tailored job descriptions.
-    - **Applier Details Extraction**: Retrieve candidates' personal information from resumes.
-    """)
-
-    # Onboarding
-    st.write("""
-    ### 2. Onboarding
-    - **Automated Assistance**: Guide new hires with FAQs and onboarding support.
-    - **Document Generation**: Create personalized onboarding documents like welcome letters.
-    """)
-    
-    # Performance Management
-    st.write("""
-    ### 3. Performance Management
-    - **Feedback Generation**: Help managers craft personalized performance reviews.
-    - **Goal Setting**: Streamline the creation of professional goals for employees.
-    - **Sentiment Analysis**: Analyze feedback to gauge employee satisfaction.
-    """)
-
-    # Learning & Development
-    st.write("""
-    ### 4. Development
-    - **Personalized Learning Pathways**: Recommend training modules tailored to individual goals.
-    - **Content Creation**: Develop interactive training materials and quizzes.
-    """)
+        # Learning & Development
+        st.write("""
+        ## Development
+        - **Personalized Learning Pathways**
+        - **Content Creation**
+        """)
 
     # APIKey = st.text_input(label="API Key",placeholder='OpenAI API Key', type="password")
     # LyzrAPIKey = st.text_input(label="Lyzr API Key", placeholder='X-API-KEY', type='password')
