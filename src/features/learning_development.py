@@ -38,7 +38,7 @@ def LearningDevelopment(OPENAI_API_KEY, LYZR_X_KEY):
                 current_skills = st.text_area(label="Current Skills", placeholder="A detailed list of the employee’s existing skills and competencies.", height=100)
                 
             prefered_learning_style = st.text_input(label='Prefered Learning Style', placeholder="Information on how the employee prefers to learn (e.g., online courses, workshops, hands-on training")
-            time_frame = st.text_input('Time Frame')
+            time_frame = st.text_area(label='Time Frame', placeholder="The duration or timeline for completing the training and associated assessments.", height=100)
             email = st.text_input(label='Provide Recievers Mail')
 
             if (employee_info and carrer_goal and skill_gap and current_skills and prefered_learning_style and time_frame and email):
