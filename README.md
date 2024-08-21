@@ -23,14 +23,6 @@ Welcome to the HR Tool powered by Lyzr's [Agent API](https://agent.api.lyzr.app/
 - **Content Creation**: Develop interactive training materials and quizzes.
 - **Knowledge Base Assistant**: Provide explanations and answers to employee questions on various topics.
 
-### 5. Employee Engagement
-- **Survey Analysis**: Analyze employee survey responses, identify trends, and suggest actionable insights.
-- **Recognition Programs**: Generate personalized recognition messages or rewards based on employee achievements.
-
-### 6. Compliance & Reporting
-- **Policy Explanation**: Generate clear and concise explanations of HR policies and legal requirements.
-- **Report Summarization**: Summarize HR data and create reports that highlight key findings.
-
 ## Getting Started
 
 ### Prerequisites
