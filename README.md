@@ -54,8 +54,6 @@ Welcome to the HR Tool powered by Lyzr's [Agent API](https://agent.api.lyzr.app/
 - **Onboarding**: Initiate the onboarding process for new hires.
 - **Performance Management**: Use the tool to generate performance reviews and set goals.
 - **Learning & Development**: Assign personalized learning paths to employees.
-- **Engagement**: Analyze surveys and recognize employees’ achievements.
-- **Compliance & Reporting**: Generate reports and explain HR policies.
 
 
 # About Lyzr
