@@ -1,13 +1,15 @@
 import streamlit as st
 from utils import utils
 from PIL import Image
-from lyzragent import LyzrAgent
-
+import os
 
 
 def HomePage():
     path = 'Keys.txt'
-    utils.delete_keys_file(file_path=path)  
+    utils.delete_keys_file(file_path=path) 
+    resume_data = "ResumeData"
+    os.makedirs(resume_data, exist_ok=True)
+    utils.remove_existing_files(directory=resume_data) 
     utils.remove_existing_files(directory="ResumeData")  
     image = Image.open("./src/logo/HR-Management-Tool-banner-lyzrAI.png")
     st.image(image)
