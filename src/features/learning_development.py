@@ -1,6 +1,6 @@
 import streamlit as st
 from PIL import Image
-from hrtools import Development, HelperTool
+from hrtools import HRToolAgents, HelperTool
 
 
 def LearningDevelopment(OPENAI_API_KEY, LYZR_X_KEY):
@@ -9,7 +9,7 @@ def LearningDevelopment(OPENAI_API_KEY, LYZR_X_KEY):
     st.title("Learning & Development")
     st.markdown("##### Click any of the button to use that respective tool!")
     try:
-        learningDevelopment = Development(LyzrKey=LYZR_X_KEY, APIKey=OPENAI_API_KEY)
+        learningDevelopment = HRToolAgents(LyzrKey=LYZR_X_KEY, APIKey=OPENAI_API_KEY)
         mailSender = HelperTool(LyzrKey=LYZR_X_KEY, APIKey=OPENAI_API_KEY)
 
         if 'active_tool' not in st.session_state:

@@ -1,6 +1,6 @@
 import streamlit as st
 from PIL import Image
-from hrtools import Performance, HelperTool
+from hrtools import HRToolAgents, HelperTool
 
 
 def PerformanceManagement(OPENAI_API_KEY, LYZR_X_KEY):
@@ -8,22 +8,8 @@ def PerformanceManagement(OPENAI_API_KEY, LYZR_X_KEY):
     st.image(image, width=150)
     st.title("Performance Management")
     st.markdown("##### Click any of the button to use that respective tool!")
-    # file = "Keys.txt"
-    
-    # APIKey = None
-    # LyzrAPIKey = None
-    
-    # try:
-    #     with open(file, 'r') as f:
-    #         lines = f.readlines()
-    #         for line in lines:
-    #             if line.startswith('APIKey:'):
-    #                 APIKey = line.split('APIKey:')[1].strip()
-    #             elif line.startswith('LyzrAPIKey:'):
-    #                 LyzrAPIKey = line.split('LyzrAPIKey:')[1].strip()
-    #                 performaceManagement = Performance(LyzrKey=LyzrAPIKey, APIKey=APIKey)
     try:
-        performaceManagement = Performance(LyzrKey=LYZR_X_KEY, APIKey=OPENAI_API_KEY)
+        performaceManagement = HRToolAgents(LyzrKey=LYZR_X_KEY, APIKey=OPENAI_API_KEY)
         mail = HelperTool(LyzrKey=LYZR_X_KEY, APIKey=OPENAI_API_KEY)
         # Initialize session state variables
         if 'active_tool' not in st.session_state:

@@ -1,10 +1,5 @@
-from .recruitment import Recruitment
-from .onboarding import Onboarding
-from .performance import Performance
+from .hrtools import HRToolAgents
 from .helpertool import HelperTool
-from .development import Development
 
-__all__ = ['Recruitment',
-           'Onboarding',
-           'Performance',
-           'Development']
+__all__ = ['HRToolAgents', 
+           'HelperTool']

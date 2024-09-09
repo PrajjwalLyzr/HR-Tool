@@ -1,28 +1,14 @@
 import streamlit as st
 from PIL import Image
-from hrtools import Onboarding, HelperTool
+from hrtools import HRToolAgents, HelperTool
 
 def OnboardingEmployee(OPENAI_API_KEY, LYZR_X_KEY):
     image = Image.open("./src/logo/Lyzr_Logo-white.png")
     st.image(image, width=150)
     st.title("Onboarding")
     st.markdown("##### Click any of the button to use that respective tool!")
-    # file = "Keys.txt"
-    
-    # APIKey = None
-    # LyzrAPIKey = None
-    
-    # try:
-    #     with open(file, 'r') as f:
-    #         lines = f.readlines()
-    #         for line in lines:
-    #             if line.startswith('APIKey:'):
-    #                 APIKey = line.split('APIKey:')[1].strip()
-    #             elif line.startswith('LyzrAPIKey:'):
-    #                 LyzrAPIKey = line.split('LyzrAPIKey:')[1].strip()
-    #                 onboard = Onboarding(LyzrKey=LyzrAPIKey, APIKey=APIKey)
     try:
-        onboard = Onboarding(LyzrKey=LYZR_X_KEY, APIKey=OPENAI_API_KEY)
+        onboard = HRToolAgents(LyzrKey=LYZR_X_KEY, APIKey=OPENAI_API_KEY)
         mailSender = HelperTool(LyzrKey=LYZR_X_KEY, APIKey=OPENAI_API_KEY)
         # Initialize session state variables
         if 'active_tool' not in st.session_state:
@@ -97,7 +83,6 @@ def OnboardingEmployee(OPENAI_API_KEY, LYZR_X_KEY):
             else:
                 st.warning('Please provide the necessary details')
 
-    # except FileNotFoundError:
-    #     st.info('Please submit the APIKey and LyzrAPIKey on the Home Page')
+
     except Exception as e:
         st.error(f"Error:{str(e)}")

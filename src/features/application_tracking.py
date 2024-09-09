@@ -1,6 +1,6 @@
 import streamlit as st
 from PIL import Image
-from hrtools import Recruitment
+from hrtools import HRToolAgents
 from utils import utils
 import PyPDF2
 import os
@@ -17,7 +17,7 @@ def RecruitmentApplicantTracking(OPENAI_API_KEY, LYZR_X_KEY):
     st.markdown("##### Click any of the button to use that respective tool!")
 
     try:
-        recruit = Recruitment(LyzrKey=LYZR_X_KEY, APIKey=OPENAI_API_KEY)
+        recruit = HRToolAgents(LyzrKey=LYZR_X_KEY, APIKey=OPENAI_API_KEY)
         # Initialize session state variables
         if 'active_tool' not in st.session_state:
             st.session_state.active_tool = None
