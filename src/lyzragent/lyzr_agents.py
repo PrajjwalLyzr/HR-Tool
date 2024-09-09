@@ -1,10 +1,25 @@
 import requests
 import json
+import os
 import streamlit as st
+from dotenv import load_dotenv
+
+
+load_dotenv()
+
+agent_api_url = os.getenv('AGENT_API_URL')
+provider = os.getenv('LLM_CONFIG_PROVIDER')
+model = os.getenv('LLM_CONFIG_MODEL')
+temperature = os.getenv('LLM_CONFIG_TEMPERATURE')
+top_p = os.getenv('LLM_CONFIG_TOP_P')
+env_url = os.getenv('AGENT_ENVIRONEMNT_URL')
+agent_url = os.getenv('CREATE_AGENT_URL')
+chat_url = os.getenv('AGENT_CHAT_URL')
+task_url = os.getenv('AGENT_TASK_URL')
 
 class LyzrAgent:
     def __init__(self, x_api_key, llm_api_key):
-        self.url = "https://agent.api.lyzr.app/v2/"
+        self.url = agent_api_url
         self.headers = {
             "accept": "application/json",
             "x-api-key": x_api_key
@@ -16,10 +31,17 @@ class LyzrAgent:
             "name": name,
             "features": features,
             "tools": tools,
+            "llm_config": {
+                            "provider": provider,
+                            "model": model,
+                            "config": {
+                                "temperature": temperature,
+                                "top_p": top_p
+                            },
             "llm_api_key": self.llm_api_key
-        })
+        }})
 
-        url = self.url + "environment"
+        url = env_url
 
         response = requests.post(url, headers=self.headers, data=payload)
 
@@ -39,7 +61,7 @@ class LyzrAgent:
             "agent_description": ""
         })
 
-        url = self.url + "agent"
+        url = agent_url
 
         response = requests.post(url, headers=self.headers, data=payload)
 
@@ -57,7 +79,7 @@ class LyzrAgent:
             "message": message
         })
 
-        url = self.url + "chat/"
+        url = chat_url
 
         response = requests.post(url, headers=self.headers, data=payload)
 

@@ -16,21 +16,6 @@ def RecruitmentApplicantTracking(OPENAI_API_KEY, LYZR_X_KEY):
     st.title("Recruitment & Applicant Tracking")
     st.markdown("##### Click any of the button to use that respective tool!")
 
-    # file = "Keys.txt"
-    
-    # APIKey = None
-    # LyzrAPIKey = None
-    
-    # try:
-    #     with open(file, 'r') as f:
-    #         lines = f.readlines()
-    #         for line in lines:
-    #             if line.startswith('APIKey:'):
-    #                 APIKey = line.split('APIKey:')[1].strip()
-    #             elif line.startswith('LyzrAPIKey:'):
-    #                 LyzrAPIKey = line.split('LyzrAPIKey:')[1].strip()
-    #                 recruit = Recruitment(LyzrKey=LyzrAPIKey, APIKey=APIKey)
-
     try:
         recruit = Recruitment(LyzrKey=LYZR_X_KEY, APIKey=OPENAI_API_KEY)
         # Initialize session state variables
@@ -58,7 +43,8 @@ def RecruitmentApplicantTracking(OPENAI_API_KEY, LYZR_X_KEY):
                 if st.button('Submit'):
                     with st.spinner('Getting Job Description...'):
                         description = recruit.JobDescriptionCreator(about_job=job_brief)
-                        st.write(description)
+                        st.code(description)
+                        # st.write(description)
             else:
                 st.info('Please Provide the Job requirements or role')
 
@@ -104,16 +90,12 @@ def RecruitmentApplicantTracking(OPENAI_API_KEY, LYZR_X_KEY):
                     if st.button('Extract'):
                         with st.spinner('Getting the Applier Details...'):
                             details = recruit.GetAppliersDeatils(resume_data=pdf_content)
-                            st.write(details)
+                            st.code(details)
                 except FileNotFoundError:
                     st.warning(f"The file '{resume_file}' does not exist in the folder '{resume_data}'.")
             else:
                 utils.remove_existing_files(directory=resume_data)
                 st.info('Upload Resume to get the details')
-
-    # except FileNotFoundError:
-    #     # st.warning(f"The file '{file}' does not exist.")
-    #     st.info('Please submit the APIKey and LyzrAPIKey on the Home Page')
 
     except Exception as e:
         st.error(f"Error:{str(e)}")

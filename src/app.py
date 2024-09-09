@@ -43,18 +43,14 @@ with col1:
         set_page("Recruitment & Applicant Tracking")
     if st.button("Performance", key="performance_button"):
         set_page("Performance Management")
-    # if st.button("Engagement", key="engagement_button"):
-    #     set_page("Employee Engagement")
-
+   
 # Place buttons in the second column
 with col2:
     if st.button("Onboarding", key="onboarding_button"):
         set_page("Onboarding")
     if st.button("Development", key="learning_button"):
         set_page("Learning & Development")
-    # if st.button("Reporting", key="compliance_button"):
-    #     set_page("Compliance & Reporting")
-
+   
 # Navigate to respective pages based on session state
 if st.session_state.active_page == "Home":
     HomePage()
@@ -66,50 +62,12 @@ elif st.session_state.active_page == "Performance Management":
     PerformanceManagement(OPENAI_API_KEY=openai_api_key, LYZR_X_KEY=lyzr_x_key)
 elif st.session_state.active_page == "Learning & Development":
     LearningDevelopment(OPENAI_API_KEY=openai_api_key, LYZR_X_KEY=lyzr_x_key)
-# elif st.session_state.active_page == "Employee Engagement":
-#     EmployeeEngagement()
-# elif st.session_state.active_page == "Compliance & Reporting":
-#     ComplianceReporting()
 
-
-
-#------------
-# page = st.sidebar.radio("Features", ["Home", 
-#                                   "Recruitment & Applicant Tracking", 
-#                                   "Onboarding", 
-#                                   "Performance Management", 
-#                                   "Learning & Development", 
-#                                   "Employee Engagement", 
-#                                   "Compliance & Reporting"])
-
-# # Home page content
-# if page == "Home":
-#     HomePage()
-
-# # Navigate to respective pages based on selection
-# if page == "Recruitment & Applicant Tracking":
-#     RecruitmentApplicantTracking()
-
-# elif page == "Onboarding":
-#     OnboardingEmployee()
-
-# elif page == "Performance Management":
-#     PerformanceManagement()
-
-# elif page == "Learning & Development":
-#     LearningDevelopment()
-
-# elif page == "Employee Engagement":
-#     EmployeeEngagement()
-
-# elif page == "Compliance & Reporting":
-#     ComplianceReporting()
 
 # sidebar
 st.markdown('---')
 st.sidebar.markdown('---')
 utils.template_end()
-# utils.social_media()
 
 
 # Footer

@@ -7,7 +7,8 @@ from lyzragent import LyzrAgent
 
 def HomePage():
     path = 'Keys.txt'
-    utils.delete_keys_file(file_path=path)    
+    utils.delete_keys_file(file_path=path)  
+    utils.remove_existing_files(directory="ResumeData")  
     image = Image.open("./src/logo/HR-Management-Tool-banner-lyzrAI.png")
     st.image(image)
     # st.title("HR Management System")
